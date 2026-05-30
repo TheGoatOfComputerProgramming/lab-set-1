@@ -11,5 +11,10 @@
         "package-lock.json": false,
         ".gitignore": false,
         "global.d.ts": false
+    },
+    "editor.quickSuggestions": {
+        "comments": "off",
+        "strings": "off",
+        "other": "off"
     }
 }

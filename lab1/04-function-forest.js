@@ -1,4 +1,18 @@
+// -------------------------------------------------------
+//  Activity 04: A Lollipop Forest
+//
+//  
+//
+//  https://p5js.org/reference/p5/cylinder/
+//  https://p5js.org/reference/p5/fill/
+//  https://p5js.org/reference/p5/translate/
+//  https://p5js.org/reference/p5/sphere/
+//
+// -------------------------------------------------------
+
 export function draw() {
+    //TODO Remove Code
+
     //2️⃣ Copy your code from Activity 3, but replace each block
     //of code that draws a tree with one line that calls the tree function
     tree();
@@ -17,6 +31,8 @@ export function draw() {
 }
 
 function tree() {
+    //TODO Remove Code
+    
     //1️⃣ Copy and paste your 6 lines of tree code from Activity 3.
     //(Just the code to draw ONE tree)
     translate(0, -50, 0);

@@ -1,3 +1,13 @@
+// -------------------------------------------------------
+//  Activity 05: A Lollipop Forest
+//
+//  https://p5js.org/reference/p5/cylinder/
+//  https://p5js.org/reference/p5/fill/
+//  https://p5js.org/reference/p5/translate/
+//  https://p5js.org/reference/p5/sphere/
+//
+// -------------------------------------------------------
+
 export function draw() {
     //This is probably what you have from activity 4, but I have
     //made each translte between trees take two steps, one back
@@ -6,13 +16,13 @@ export function draw() {
     tree();
 
     //1️⃣ Delete or comment out the next line..
-    //translate(0, 140, 0);   //Translate down to ground
+    translate(0, 140, 0);   //Translate down to ground
     translate(120, 0, 0);   //Translate right to next tree
 
     tree();
 
     //2️⃣ Delete or comment out the next line..
-    //translate(0, 140, 0);   //Translate down to ground
+    translate(0, 140, 0);   //Translate down to ground
     translate(120, 0, 0);   //Translate right to next tree
 
     tree();
@@ -20,7 +30,7 @@ export function draw() {
 
 function tree() {
     //3️⃣ Uncomment this line, and the pop at the bottom
-    push();
+    //push();
     translate(0, -50, 0);
     fill(150, 90, 20);
     cylinder(10, 100);
@@ -28,5 +38,5 @@ function tree() {
     fill(50, 180, 50);
     sphere();
     //3️⃣ Uncomment this line
-    pop();
+    //pop();
 }

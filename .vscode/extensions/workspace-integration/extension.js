@@ -3,10 +3,7 @@ const http = require('http');
 const url = require('url');
 const path = require('path');
 
-vscode.window.showInformationMessage('Workspace Integration Loaded!');
-
 module.exports.activate = function(context) {
-  vscode.window.showInformationMessage('Workspace Integration Activated!');
   
   // Track current decorations for the call stack
   let currentDecorations = []; // Array of { editor, decoration }

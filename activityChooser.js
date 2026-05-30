@@ -33,6 +33,7 @@ const loadActivity = async (path) => {
         console.log('Loaded:', path,  module);
         return module;
     } catch (e){
+        console.log(e); //TODO Show on screen
         localStorage.removeItem('activityPath');
     }
 };

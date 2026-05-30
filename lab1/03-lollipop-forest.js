@@ -1,3 +1,19 @@
+// -------------------------------------------------------
+//  Activity 03: A Lollipop Forest
+//
+//  You can move around to draw a tree, now you are going to
+//  do it two more times. I'd suggest you type it out, not
+//  copy and paste, so you build "muscle memory".
+//
+//  Draw a tree, then move back down and over to the right
+//  and do it again, and then again!
+//
+//  https://p5js.org/reference/p5/cylinder/
+//  https://p5js.org/reference/p5/fill/
+//  https://p5js.org/reference/p5/translate/
+//  https://p5js.org/reference/p5/sphere/
+//
+// -------------------------------------------------------
 export function draw(){
     //TODO Remove Code
     

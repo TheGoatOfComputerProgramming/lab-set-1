@@ -9,6 +9,9 @@ window.Buffer = Buffer.Buffer;
 const pauseException = { "pauseException": true };
 let frameCount = 0;
 let frameLimit = 0;
+let checkpointCount = 0;
+let checkpointLimit = 0;
+
 
 let animateSpeedInput = document.querySelector('#animateSpeed');
 const savedSpeed = localStorage.getItem('animateSpeed') || 1;
@@ -17,12 +20,29 @@ animateSpeedInput.addEventListener('change', async (event) => {
     localStorage.setItem('animateSpeed', event.target.value);
 });
 
+let stepButton = document.querySelector('#animateStep');
+stepButton.addEventListener('click', function stepClick() {
+    checkpointLimit++;
+    console.log("CP Lim", checkpointLimit, "CP Count", checkpointCount);
+});
+
+function checkpoint() {
+    checkpointCount++;
+}
+
 function pause(frames = 1) {
-    for ( let i = 0; i < frames; i++){
+    let speed = parseInt(animateSpeedInput.value);
+    if (speed == 0) {
+        if (checkpointCount < checkpointLimit) {
+            speed = 5;
+        }
+    }
+    for (let i = 0; i < frames; i++) {
         frameCount++;
         if (frameCount >= frameLimit) {
             frameCount = 0;
-            frameLimit += parseInt(animateSpeedInput.value);
+            checkpointCount = 0;
+            frameLimit += speed;
             pauseException.stack = new StackTracey();
             throw pauseException;
         }
@@ -54,6 +74,7 @@ function wrap() {
                         oldFunc(...p.map(v => v * delta));
                         pause(1);
                     }
+                    checkpoint();
                 }
                 break;
 
@@ -68,6 +89,7 @@ function wrap() {
                         oldFuncs.pop();
                     }
                     oldFunc(...p);
+                    checkpoint();
                 }
                 break;
 
@@ -76,16 +98,18 @@ function wrap() {
                     oldFunc();
                     stack.push([..._renderer.uModelMatrix.mat4]);
                     pause(10);
+                    checkpoint();
                 }
                 break;
             case "pop":
                 window[name] = function () {
-                    for (let i = 0; i < 50; i++ ){
+                    for (let i = 0; i < 50; i++) {
                         pause(1);
                     }
                     oldFunc();
                     stack.pop();
                     pause(10);
+                    checkpoint();
                 }
                 break;
             default:
@@ -93,6 +117,7 @@ function wrap() {
                     pause(20);
                     oldFunc(...args);
                     pause(40);
+                    checkpoint();
                 }
                 break;
         }
@@ -110,7 +135,7 @@ function unwrap() {
 let stack = [];
 let lastHighlight = "";
 export function drawWithPause(drawFunc) {
-    if (animateSpeedInput.value == 0 ){
+    if (animateSpeedInput.value == animateSpeedInput.max) {
         drawFunc();
         return;
     }
@@ -121,14 +146,15 @@ export function drawWithPause(drawFunc) {
         drawFunc();
         pause(100);
         frameLimit = 0;
+        checkpointLimit = 0;
         unwrap();
     } catch (e) {
         unwrap();
         drawAxes();
-        while ( stack.length ){
+        while (stack.length) {
             resetMatrix();
             applyMatrix(...stack.pop());
-            drawAxes(alpha=64);
+            drawAxes(alpha = 64);
         }
         if (e == pauseException) {
             for (let frame of e.stack.items) {
@@ -138,9 +164,9 @@ export function drawWithPause(drawFunc) {
                     let newHighlight = `${frame.fileRelative}: ${frame.line}`;
                     if (newHighlight != lastHighlight) {
                         console.log(frame.sourceLine, frame.fileRelative, frame.line);
-                        let s = e.stack.items.filter(f=>f.fileRelative.startsWith(frame.fileRelative));
+                        let s = e.stack.items.filter(f => f.fileRelative.startsWith(frame.fileRelative));
                         console.log(s);
-                        s = s.map(f=>({file: frame.fileRelative, line: f.line}));
+                        s = s.map(f => ({ file: frame.fileRelative, line: f.line }));
                         console.log(s);
                         WI.highlight(s);
                         lastHighlight = newHighlight;
