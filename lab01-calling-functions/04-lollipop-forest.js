@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-//  Activity 03: A Lollipop Forest
+//  A Lollipop Forest
 //
 //  You can move around to draw a tree, now you are going to
 //  do it two more times. I'd suggest you type it out, not

@@ -1,8 +1,10 @@
 let tex, tex2;
 
 export function preload() {
-    tex = loadImage('lab1/activity99/tex1.png');
-    tex2 = loadImage('lab1/activity99/tex2.png');
+    let p = new URL(import.meta.url).pathname;
+    p = p.substring(0, p.lastIndexOf('/') + 1);
+    tex = loadImage(p + 'tex1.png');
+    tex2 = loadImage(p + 'tex2.png');
 }
 
 export function draw() {

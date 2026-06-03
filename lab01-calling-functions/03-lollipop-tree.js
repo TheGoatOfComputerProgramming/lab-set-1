@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-//  Activity 02: A Lollipop Tree
+//  A Lollipop Tree
 //
 //  This activity introduces a bunch of new functions that
 //  you can use in creating 3d graphics using code. This might

@@ -1,6 +1,7 @@
 /// <reference types="p5/global" />
 
 import { verts, faces } from "./teapot.js";
+import { drawWithPause } from "@/utils/animatedDraw.js";
 
 
 
@@ -12,7 +13,15 @@ function l(i, j) {
     )
 }
 
-export async function main(time) {
+export function draw(t) {
+    orbitControl();
+    background(30);
+    ambientLight(80);
+    directionalLight(255, 255, 255, 1, 1, -1);
+    drawWithPause(demo, {noAxis: true});
+}
+
+function demo(time) {
 
     scale(50)
     stroke(255);
@@ -21,13 +30,13 @@ export async function main(time) {
         l(face[1], face[2]);
         l(face[2], face[0]);
 
-        await(sleep(10));
-
+        /*
         fill(128)
         beginShape();
         vertex(...verts[face[0]]);
         vertex(...verts[face[1]]);
         vertex(...verts[face[2]]);
         endShape();
+        */
     }
 }

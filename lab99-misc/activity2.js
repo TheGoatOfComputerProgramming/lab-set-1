@@ -18,7 +18,7 @@ function tree(depth, t) {
     return;
   }
 
-  if (depth > 4)
+  if (depth > 3)
     fill(130, 80, 0)
   else
     fill(10, 120, 10)
@@ -47,7 +47,11 @@ function tree(depth, t) {
 
 
 export function draw(t) {
-  noStroke()
-  translate(0,-40,0)
-  tree(12, t);
+  orbitControl();
+  background(30);
+  ambientLight(80);
+  directionalLight(255, 255, 255, 1, 1, -1);
+  noStroke();
+
+  tree(10, t);
 }

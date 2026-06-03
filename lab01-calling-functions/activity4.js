@@ -1,5 +1,4 @@
-import * as activity from "./04-function-forest.js";
-import { drawAxes } from "@/utils/axes.js";
+import * as activity from "./04-lollipop-forest.js";
 import { drawGrid } from "@/utils/grid.js";
 import { drawWithPause } from "@/utils/animatedDraw.js";
 import { demoMode } from "@/utils/demoMode";
@@ -15,26 +14,32 @@ export function draw(t) {
     directionalLight(255, 255, 255, 1, 1, -1);
     drawGrid();
     noStroke();
-    drawWithPause(demoMode ? demo : activity.draw);
+    drawWithPause(demoMode?demo:activity.draw);
 }
 
-function tree() {
+function demo(){
     translate(0, -50, 0);
     fill(150, 90, 20);
     cylinder(10, 100);
     translate(0, -90, 0);
     fill(50, 180, 50);
     sphere();
-}
 
-function demo() {
-    tree();
+    translate(120,140,0);
 
-    translate(120, 140, 0);
+    translate(0, -50, 0);
+    fill(150, 90, 20);
+    cylinder(10, 100);
+    translate(0, -90, 0);
+    fill(50, 180, 50);
+    sphere();
 
-    tree();
+    translate(120,140,0);
 
-    translate(120, 140, 0);
-
-    tree();
+    translate(0, -50, 0);
+    fill(150, 90, 20);
+    cylinder(10, 100);
+    translate(0, -90, 0);
+    fill(50, 180, 50);
+    sphere();
 }

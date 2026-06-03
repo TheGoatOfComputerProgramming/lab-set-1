@@ -62,7 +62,7 @@ function smoothstep(t) {
     return Math.pow(s, 2);  // increase exponent for stronger ease
 }
 
-let funcNames = ["translate", "rotateX", "rotateY", "rotateZ", "cylinder", "sphere", "scale", "push", "pop", "fill"];
+let funcNames = ["translate", "rotateX", "rotateY", "rotateZ", "cylinder", "sphere", "scale", "push", "pop", "fill", "line"];
 let oldFuncs = {};
 function wrap() {
     for (let name of funcNames) {
@@ -142,7 +142,7 @@ function unwrap() {
 
 let stack = [];
 let lastHighlight = "";
-export function drawWithPause(drawFunc) {
+export function drawWithPause(drawFunc, options={}) {
     if (animateSpeedInput.value == animateSpeedInput.max) {
         drawFunc();
         return;
@@ -159,11 +159,13 @@ export function drawWithPause(drawFunc) {
         unwrap();
     } catch (e) {
         unwrap();
+        if ( !options.noAxis ){
         drawAxes();
-        while (stack.length) {
-            resetMatrix();
-            applyMatrix(...stack.pop());
-            drawAxes(alpha = 64);
+            while (stack.length) {
+                resetMatrix();
+                applyMatrix(...stack.pop());
+                drawAxes(alpha = 64);
+            }
         }
         if (e == pauseException) {
             for (let frame of e.stack.items) {

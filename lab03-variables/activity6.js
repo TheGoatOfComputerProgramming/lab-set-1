@@ -1,5 +1,4 @@
-import * as activity from "./02-lollipop-tree";
-import { drawAxes } from "@/utils/axes.js";
+import * as activity from "./06-variable-height";
 import { drawGrid } from "@/utils/grid.js";
 import { drawWithPause } from "@/utils/animatedDraw.js";
 import { demoMode } from "@/utils/demoMode";
@@ -15,14 +14,31 @@ export function draw(t) {
     directionalLight(255, 255, 255, 1, 1, -1);
     drawGrid();
     noStroke();
-    drawWithPause(demoMode?demo:activity.draw);
+    drawWithPause(demoMode ? demo : activity.draw);
 }
 
-function demo(){
-    translate(0, -50, 0);
+function tree() {
+    let height = 100;
+
+    push();
+    translate(0, -height/2, 0);
     fill(150, 90, 20);
-    cylinder(10, 100);
-    translate(0, -90, 0);
+    cylinder(10, height);
+    translate(0, -height/2 - 40, 0);
     fill(50, 180, 50);
     sphere();
+    pop();
+
+}
+
+function demo() {
+    tree();
+
+    translate(120, 0, 0);
+
+    tree();
+
+    translate(120, 0, 0);
+
+    tree();
 }

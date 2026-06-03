@@ -1,5 +1,5 @@
 // -------------------------------------------------------
-//  Activity 01: A single cube
+//  A single cube
 //
 //  This activity introduces the draw function, which we will
 //  fill in with code for many activities to come. You will
