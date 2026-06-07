@@ -1,4 +1,4 @@
-import * as activity from "./01-do-you-wanna-build-a-snowman";
+import * as activity from "./03-lollipop-pop.js";
 import { drawGrid } from "@/utils/grid.js";
 import { drawWithPause } from "@/utils/animatedDraw.js";
 import { demoMode } from "@/utils/demoMode";
@@ -9,26 +9,33 @@ export function setup() {
 
 export function draw(t) {
     orbitControl();
-    background(100,110,180);
-    ambientLight(100);
+    background(30);
+    ambientLight(80);
     directionalLight(255, 255, 255, 1, 1, -1);
     drawGrid();
     noStroke();
     drawWithPause(demoMode ? demo : activity.draw);
 }
 
-function demo() {
-    fill(200);
-    translate(0,-50,0);
-    sphere(70);
-    translate(0,-90,0);
-    sphere(50);
-    translate(0,-70,0);
-    sphere(30);
+function tree() {
+    push();
+    translate(0, -50, 0);
+    fill(150, 90, 20);
+    cylinder(10, 100);
+    translate(0, -90, 0);
+    fill(50, 180, 50);
+    sphere();
+    pop();
+}
 
-    fill(50);
-    translate(0,-20,0);
-    cylinder(40,10);
-    translate(0,-20,0);
-    cylinder(20,50);
+function demo() {
+    tree();
+
+    translate(120, 0, 0);
+
+    tree();
+
+    translate(120, 0, 0);
+
+    tree();
 }

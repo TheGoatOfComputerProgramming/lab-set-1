@@ -161,11 +161,13 @@ export function drawWithPause(drawFunc, options={}) {
         unwrap();
         if ( !options.noAxis ){
         drawAxes();
+        drawingContext.disable(drawingContext.DEPTH_TEST);
             while (stack.length) {
                 resetMatrix();
                 applyMatrix(...stack.pop());
                 drawAxes(alpha = 64);
             }
+            drawingContext.enable(drawingContext.DEPTH_TEST);
         }
         if (e == pauseException) {
             for (let frame of e.stack.items) {
