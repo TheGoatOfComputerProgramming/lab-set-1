@@ -1,4 +1,4 @@
-import * as activity from "./04-another-snowman";
+import * as activity from "./05-line-draw.js";
 import { drawGrid } from "@/utils/grid.js";
 import { drawWithPause } from "@/utils/animatedDraw.js";
 import { demoMode } from "@/utils/demoMode";
